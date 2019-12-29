@@ -1,0 +1,21 @@
+.number-btn {
+  background-color: lightgrey;
+  font-weight: bold;
+  font-size: 1.3em;
+  margin: 10px;
+  display: block;
+  width: 40px;
+  text-align: center;
+}
+
+.candidate {
+  background-color: lightblue;
+}
+
+.correct {
+  background-color: lightgreen;
+}
+
+.wrong {
+  background-color: lightcoral;
+}

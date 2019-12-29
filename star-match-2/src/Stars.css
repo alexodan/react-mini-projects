@@ -1,0 +1,14 @@
+.row {
+  display: flex;
+  border: 1px solid black;
+  width: 180px;
+  flex-wrap: wrap;
+}
+
+.star {
+  font-size: 2.2em;
+  margin: 10px;
+  display: block;
+  width: 20px;
+  text-align: center;
+}

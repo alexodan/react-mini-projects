@@ -1,0 +1,6 @@
+.row {
+  display: flex;
+  border: 1px solid black;
+  width: 180px;
+  flex-wrap: wrap;
+}
