@@ -1,10 +1,14 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { range } from "./utils";
-import "./Stars.css";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import React from 'react';
+import './Stars.css';
+import utils from './utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-function Stars({ currentCase, possibleCases }) {
-  return <div className="row"></div>;
+function Stars({ stars }) {
+	return (
+		<div className="row ">
+			{utils.range(1, stars).map((star) => <FontAwesomeIcon key={star} icon={faStar} className="star" />)}
+		</div>
+	);
 }
 export default Stars;

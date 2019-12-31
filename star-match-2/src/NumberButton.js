@@ -1,15 +1,12 @@
-import React from "react";
-import "./NumberButton.css";
+import React from 'react';
+import './NumberButton.css';
 
-function NumberButton({ numberButton, handleClick }) {
-  return (
-    <button
-      className={`number-btn ${numberButton.currentState}`}
-      onClick={() => handleClick(numberButton)}
-    >
-      {numberButton.number}
-    </button>
-  );
+function NumberButton({ number, currentState, handleClickNumber }) {
+	return (
+		<button className={`number-btn ${currentState}`} onClick={() => handleClickNumber(number)}>
+			{number}
+		</button>
+	);
 }
 
 export default NumberButton;
