@@ -7,17 +7,17 @@ function range(start, end) {
 }
 
 function pickOneInSum(numbers) {
+	console.log(numbers);
 	const possibleSums = numbers.map((n) => n);
-	numbers.map((n) => n.number);
 	for (let i = 0; i < numbers.length; i++) {
 		for (let j = i + 1; j < numbers.length; j++) {
-			possibleSums.push(numbers[i].number + numbers[j].number);
+			possibleSums.push(numbers[i] + numbers[j]);
 		}
 	}
-	return possibleSums;
+	return possibleSums[Math.floor(Math.random() * possibleSums.length)];
 }
 
-function random(start, end) {
+function randomBetween(start, end) {
 	var rans = range(start, end);
 	return rans[Math.floor(Math.random() * end)];
 }
@@ -32,7 +32,7 @@ function sumInArray(arr) {
 const utils = {
 	range,
 	pickOneInSum,
-	random,
+	randomBetween,
 	sumInArray
 };
 

@@ -3,7 +3,7 @@ import './NumberButton.css';
 
 function NumberButton({ number, currentState, handleClickNumber }) {
 	return (
-		<button className={`number-btn ${currentState}`} onClick={() => handleClickNumber(number)}>
+		<button className={`number-btn ${currentState}`} onClick={() => handleClickNumber(number, currentState)}>
 			{number}
 		</button>
 	);

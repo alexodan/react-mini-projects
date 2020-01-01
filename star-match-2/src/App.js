@@ -11,36 +11,42 @@ const NumberButtonState = {
 	WRONG: 'wrong'
 };
 
-function App() {
-	const [ stars, setStars ] = useState(utils.random(1, 9));
-	const [ availableNumbers, setAvailableNumbers ] = useState(utils.range(1, 9));
-	const [ usedNumbers, setUsedNumbers ] = useState([ 2, 3 ]);
+// TODO NEXT: Resetting the state
 
-	const selectRandomNumber = (numberChoices) => {
-		const remainingNumbers = numberChoices.filter((n) => n.currentState === NumberButtonState.NONE);
-		const possibleSums = utils.pickOneInSum(remainingNumbers);
-		return possibleSums[Math.floor(Math.random() * possibleSums.length)];
-	};
+function App() {
+	const [ stars, setStars ] = useState(utils.randomBetween(1, 9));
+	const [ availableNumbers, setAvailableNumbers ] = useState(utils.range(1, 9));
+	const [ candidateNumbers, setCandidateNumbers ] = useState([]);
 
 	const defineNumberState = (number) => {
-		const sum = utils.sumInArray(usedNumbers);
-		if (sum > stars) {
-			if (usedNumbers.includes(number)) {
-				return NumberButtonState.WRONG;
-			}
-		} else if (sum < stars) {
-			if (usedNumbers.includes(number)) {
-				return NumberButtonState.CANDIDATE;
-			}
-		} else {
+		const sum = utils.sumInArray(candidateNumbers);
+		if (!availableNumbers.includes(number)) {
 			return NumberButtonState.CORRECT;
 		}
+		if (candidateNumbers.includes(number)) {
+			return sum > stars ? NumberButtonState.WRONG : NumberButtonState.CANDIDATE;
+		}
+		return NumberButtonState.NONE;
 	};
 
-	const handleClickNumber = (number) => {
+	const handleClickNumber = (number, numberState) => {
 		console.log(number);
-
-		setUsedNumbers();
+		if (numberState === NumberButtonState.CORRECT) {
+			return;
+		}
+		const newCandidates =
+			numberState === NumberButtonState.NONE
+				? candidateNumbers.concat(number)
+				: candidateNumbers.filter((n) => n != number);
+		const sum = utils.sumInArray(newCandidates);
+		if (sum !== stars) {
+			setCandidateNumbers(newCandidates);
+		} else {
+			const newAvailableNumbers = availableNumbers.filter((n) => !newCandidates.includes(n));
+			setAvailableNumbers(newAvailableNumbers);
+			setCandidateNumbers([]);
+			setStars(utils.pickOneInSum(newAvailableNumbers));
+		}
 	};
 
 	return (
